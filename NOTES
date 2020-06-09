@@ -1,0 +1,20 @@
+To do list
+
+Users
+- has_many :tasks
+- has_many :projects, through: tasks
+- username:string
+- password_digest
+
+Tasks * join table joining projects & users
+- belongs_to :user
+- belongs_to :project
+- title
+- content
+
+Projects
+- has_many :tasks
+- has_many :users, through: tasks
+- name:string
+
+- user can create a project or add tasks to an existing project
