@@ -10,7 +10,6 @@ Tasks * join table joining projects & users
 - belongs_to :user
 - belongs_to :project
 - title
-- content
 
 Projects
 - has_many :tasks
