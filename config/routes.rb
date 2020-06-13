@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  resources :tasks
-  resources :projects
-  resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :users, only:[:new, :create]
+
+  resources :projects, only:[:index, :new, :create, :edit, :update, :delete] do
+    resources :tasks, only:[:new, :create, :edit, :update, :index, :delete]
+  end
+
+  root 'projects#index'
 end
