@@ -1,12 +1,14 @@
+<h1> Create new user </h1>
+
 <%= form_for @user, controller: 'users', action: 'create' do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.label :username %>
+  <%= f.text_field :username %><br>
 
   <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= f.password_field :password %><br>
 
   <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+  <%= f.password_field :password_confirmation %><br>
 
-  <%= f.submit "create" %>
+  <%= f.submit "Create user" %>
 <% end %>
