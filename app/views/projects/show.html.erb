@@ -1,0 +1,8 @@
+<h1> <%= @project.name %> </h1>
+
+<p>TO DO:</p>
+<% @project.tasks.each do |task| %>
+  <div><%= task.content %></div>
+<% end %>
+
+<%= link_to "New Item", new_project_task_path(@project) %>

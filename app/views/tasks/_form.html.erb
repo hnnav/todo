@@ -1,0 +1,7 @@
+
+<%= form_for([:project, @task]) do |f| %>
+  <%= f.hidden_field :project_id %>
+ 
+  New task: <%= f.text_field :content %><br>
+  <%= f.submit %>
+<% end %>

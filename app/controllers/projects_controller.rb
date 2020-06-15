@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
-    before_action :find_project, only: [:edit, :update, :destroy]
+    before_action :find_project, only: [:edit, :update, :destroy, :show]
+    before_action :require_logged_in
 
     def new
         @project = Project.new
@@ -18,6 +19,10 @@ class ProjectsController < ApplicationController
         @projects = Project.all
     end
 
+    def show
+        @tasks = @project.tasks
+    end
+
     def edit
     end
 
@@ -30,6 +35,8 @@ class ProjectsController < ApplicationController
     end
 
     def destroy
+        @project.destroy
+        redirect_to root_path
     end
 
     private
