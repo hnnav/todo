@@ -25,7 +25,7 @@ Tasks * join table joining projects & users
         - redirect to tasks/index
     - /projects/:project_id/tasks/:id/edit
         - view: tasks/edit use _form
-        - redirect to projects/show
+        - redirect to index
 
 
 Projects

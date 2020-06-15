@@ -1,13 +1,17 @@
 class ProjectsController < ApplicationController
-    before_action :find_project, only: [:show, :edit, :update, :destroy]
+    before_action :find_project, only: [:edit, :update, :destroy]
 
     def new
+        @project = Project.new
     end
 
     def create
-    end
-
-    def show
+        @project = Project.new(project_params)
+        if @project.save
+            redirect_to root
+        else
+            render :new
+        end
     end
 
     def index

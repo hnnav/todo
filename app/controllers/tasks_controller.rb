@@ -1,16 +1,21 @@
 class TasksController < ApplicationController
-    before_action :find_task, only: [:show, :index, :edit, :update, :destroy]
+    before_action :find_task, only: [:index, :destroy]
 
     def new
+        @task = Task.new
     end
 
     def create
-    end
-
-    def show
+        @task = Task.new(task_params)
+        if @task.save
+          redirect_to project_tasks_path
+        else
+          render :new
+        end
     end
 
     def index
+        @project = Project.find_by(id: params[:project_id])
     end
 
     def edit

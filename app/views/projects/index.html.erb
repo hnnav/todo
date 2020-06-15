@@ -1,0 +1,9 @@
+<h1> Projects: </h1>
+
+<% @projects.each do |project| %>
+    <%= link_to project.name, project_tasks_path(project) %>
+    <%= link_to "Rename", edit_project_path(project) %>
+    <%= link_to "Delete", project, method: :delete %>
+<% end %>
+
+<%= link_to "Create a new project", new_project_path(@project) %>

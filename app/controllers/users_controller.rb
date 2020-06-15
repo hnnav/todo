@@ -1,34 +1,21 @@
 class UsersController < ApplicationController
-    before_action :find_user, only: [:show, :index, :edit, :update, :destroy]
 
     def new
+        @user = User.new
     end
 
     def create
-    end
-
-    def show
-    end
-
-    def index
-    end
-
-    def edit
-    end
-
-    def update
-    end
-
-    def destroy
+        @user = User.new(user_params)
+      if @user.save
+        redirect_to root
+      else
+        render :new
+      end
     end
 
     private
 
     def user_params
         params.require(:user).permit(:username, :password)
-    end
-
-    def find_user
-        @user = User.find(params[:id])
     end
 end
