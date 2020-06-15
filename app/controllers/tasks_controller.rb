@@ -33,7 +33,7 @@ class TasksController < ApplicationController
     private
 
     def task_params
-        params.require(:task).permit(:content, :project_id)
+        params.require(:task).permit(:id, :content, :project_id)
     end
 
     def find_task
