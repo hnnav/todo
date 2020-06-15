@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
     def create
         @project = Project.new(project_params)
         if @project.save
-            redirect_to root
+            redirect_to root_path
         else
             render :new
         end
