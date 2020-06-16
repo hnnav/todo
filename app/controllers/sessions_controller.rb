@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.clear
-    redirect to '/'
+    redirect_to '/'
   end
 
   def create
