@@ -1,24 +1,31 @@
 class TasksController < ApplicationController
-    before_action :find_task, only: [:index, :destroy]
+    before_action :find_task, only: [:destroy]
 
     def new
-        @task = Task.new(project_id: params[:project_id])
+        # if nested and project exists
+        if params[:project_id] && @project = Project.find_by_id(params[:project_id])
+            @task = @project.tasks.build
+        else
+            @task = Task.new
+        end
     end
 
     def create
-        # @task = Task.new(task_params)
-        # @project = Project.find(params[:project_id])
-        # @task = @project.tasks.build(task_params)
-        # @task.save
+        @task = current_user.tasks.build(task_params)
         
         if @task.save
-          redirect_to project_path(task.project)
+          redirect_to project_path(params[:project_id])
         else
           render :new
         end
     end
 
     def index
+        if params[:project_id] && @project = Project.find_by_id(params[:project_id])
+            @tasks = @project.tasks
+        else
+            @tasks = Task.all
+        end
     end
 
     def edit
