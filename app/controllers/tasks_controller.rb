@@ -1,12 +1,13 @@
 class TasksController < ApplicationController
-    before_action :find_task, only: [:destroy]
 
     def new
         # if nested and project exists
+        # this works and is assigning project id
         if params[:project_id] && @project = Project.find_by_id(params[:project_id])
             @task = @project.tasks.build
         else
-            @task = Task.new
+            # do an error here
+            redirect_to project_path(params[:project_id])
         end
     end
 
@@ -35,15 +36,19 @@ class TasksController < ApplicationController
     end
 
     def destroy
+        @project = Project.find_by(id: params[:project_id])
+        if @project.nil?
+            redirect_to project_path(params[:project_id])
+        else
+            @task = @project.tasks.find_by(id: params[:id])
+            @task.destroy
+            redirect_to project_path(params[:project_id])
+        end
     end
 
     private
 
     def task_params
-        params.require(:task).permit(:id, :content, :project_id)
-    end
-
-    def find_task
-        @task = Task.find(params[:id])
+        params.require(:task).permit(:content, :project_id)
     end
 end

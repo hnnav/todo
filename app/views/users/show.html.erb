@@ -1,3 +1,10 @@
 <h1> Welcome, <%= @user.username %> </h1>
 
-<%= link_to "Logout", logout_path, method:"delete" %>
+<% @user.projects.each do |project| %>
+    <h3><%= link_to project.name, project_path(project) %></h3>
+    <%= link_to "Rename", edit_project_path(project) %>
+    <%= link_to "Delete", project, method: :delete %>
+<% end %>
+<br>
+<br>
+<%= link_to "Create a new project", new_project_path(@project) %>

@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
     def create
         @project = current_user.projects.build(project_params)
         if @project.save
-            redirect_to root_path
+            redirect_to '/'
         else
             render :new
         end
@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
     private
 
     def project_params
-        params.require(:project).permit(:name, :description)
+        params.require(:project).permit(:name, :description, :user_id)
     end
 
     def find_project
