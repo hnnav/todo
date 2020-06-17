@@ -31,4 +31,14 @@ class SessionsController < ApplicationController
       redirect_to "/login"
     end
   end
+
+  def google
+    binding.pry
+  end
+
+  private
+
+  def auth
+    request.env['omniauth.auth']
+  end
 end
