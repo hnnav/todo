@@ -33,7 +33,17 @@ class SessionsController < ApplicationController
   end
 
   def google
-    binding.pry
+    # find or create a user using attr from #auth
+    @user = User.find_or_create_by(email: auth[:info][:email]) do |user|
+      user.password = SecureRandom.hex(10)
+    end
+
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to '/'
+    else
+      redirect_to '/'
+    end
   end
 
   private
