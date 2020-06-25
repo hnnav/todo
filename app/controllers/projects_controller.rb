@@ -35,6 +35,7 @@ class ProjectsController < ApplicationController
     end
 
     def destroy
+        # FOREIGN KEY constraint failed when deleting another users project (user_id ?)
         @project.destroy
         redirect_to root_path
     end

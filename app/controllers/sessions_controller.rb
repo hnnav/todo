@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def google
-    # find or create a user using attr from #auth
+    # find or create a user using attributes from #auth
     @user = User.find_or_create_by(email: auth[:info][:email]) do |user|
       user.password = SecureRandom.hex(10)
     end
