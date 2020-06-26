@@ -1,6 +1,16 @@
 <h1> Create new user </h1>
 
 <%= form_for @user, controller: 'users', action: 'create' do |f| %>
+
+  <% if @user.errors.any? %>
+    <h3> Errors: </h3>
+    <ul>
+      <% @user.errors.full_messages.each do |message|  %>
+        <li> <%= message %> </li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <%= f.label :username %>
   <%= f.text_field :username %><br>
 

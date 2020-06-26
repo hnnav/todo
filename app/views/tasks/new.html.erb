@@ -1,6 +1,16 @@
 <h1> Create a new task </h1>
 
 <%= form_for([:project, @task]) do |f| %>
+
+  <% if @task.errors.any? %>
+    <h3> Errors: </h3>
+    <ul>
+      <% @task.errors.full_messages.each do |message|  %>
+        <li> <%= message %> </li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <%= f.hidden_field :project_id %>
  
   <%= f.label :content %>
