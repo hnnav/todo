@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(username: params[:user][:username])
+
     if user && user.authenticate(params[:user][:password])
       session[:user_id] = user.id
       redirect_to '/'
@@ -21,11 +22,12 @@ class SessionsController < ApplicationController
     @user = User.find_or_create_by(email: auth[:info][:email]) do |user|
       user.password = SecureRandom.hex(10)
     end
-
+    binding.pry
     if @user.save
       session[:user_id] = @user.id
       redirect_to '/'
     else
+      
       redirect_to '/'
     end
   end

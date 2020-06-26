@@ -19,11 +19,12 @@ class TasksController < ApplicationController
         end
     end
 
-    def index
-        if params[:project_id] && @project = Project.find_by_id(params[:project_id])
-            @tasks = @project.tasks
+    def show
+        @project = Project.find_by(id: params[:project_id])
+        if @project.nil?
+            redirect_to project_path(params[:project_id])
         else
-            @tasks = Task.all
+            @task = @project.tasks.find_by(id: params[:id])
         end
     end
 

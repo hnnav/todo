@@ -6,7 +6,7 @@
 <p>TO DO:</p>
 <% @project.tasks.each do |task| %>
   <li>
-    <%= task.content %>
+    <%= link_to task.content, project_task_path(@project, task) %>
     <%= link_to 'Delete', project_task_path(task.project, task), :controller => :tasks, :action => :destroy, method: :delete %>
   </li>
 <% end %>
