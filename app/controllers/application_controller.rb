@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     before_action :current_user
-    # gives access in views
     helper_method :current_user, :logged_in?
 
     def current_user
