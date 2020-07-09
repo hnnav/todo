@@ -21,6 +21,8 @@ class ProjectsController < ApplicationController
 
     def show
         @tasks = @project.tasks
+        @todo_tasks = @tasks.where(completed_status: false)
+        @completed_tasks = @tasks.where(completed_status: true)
     end
 
     def edit

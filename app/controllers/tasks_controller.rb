@@ -28,12 +28,13 @@ class TasksController < ApplicationController
         end
     end
 
-    def edit
-    end
-
     def update
+        @task = Task.find(params[:id])
+        @task.completed_status = true
+        @task.save
+        redirect_to project_path(params[:project_id])
     end
-
+    
     def destroy
         @project = Project.find_by(id: params[:project_id])
         if @project.nil?
@@ -48,6 +49,6 @@ class TasksController < ApplicationController
     private
 
     def task_params
-        params.require(:task).permit(:content, :project_id)
+        params.require(:task).permit(:content, :project_id, :completed_status)
     end
 end

@@ -1,5 +1,6 @@
+<h1> <%= @task.content %> </h1>
+<br>
+<h3> Created by: <%= @task.user.username || @task.user.email%> </h3>
 
+<h3> Belongs to: <%= @task.project.name %> </h3>
 
-<h1> <%= @task.project.name %> </h1>
-
-<h3> <%= @task.content %> </h3>

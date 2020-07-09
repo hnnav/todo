@@ -5,6 +5,4 @@ class Project < ApplicationRecord
     scope :alphabetical, -> { order(:name) }
 
     validates :name, presence: true
-
-    
 end
