@@ -25,9 +25,6 @@ class ProjectsController < ApplicationController
         @completed_tasks = @tasks.where(completed_status: true)
     end
 
-    def edit
-    end
-
     def update
         if @project.update(project_params)
           redirect_to root_path
@@ -37,7 +34,6 @@ class ProjectsController < ApplicationController
     end
 
     def destroy
-        # FOREIGN KEY constraint failed when deleting another users project (user_id ?)
         @project.destroy
         redirect_to root_path
     end
